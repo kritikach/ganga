@@ -68,10 +68,11 @@ const Article = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
-      <div className="p-4 sm:p-6 lg:p-8">
-        <button
-          onClick={() => setShowArticles(false)}
-          className="text-white px-2 py-2 rounded hover:bg-gray-200 mb-4"
+      <div className="p-4">
+        <div className='flex'>
+      <button
+          onClick={() => setShowArticles(false)} // Navigate to the previous page
+          className="bg-white text-blue-600 px-2 py-2 rounded hover:bg-gray-200 mb-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -85,25 +86,27 @@ const Article = () => {
             />
           </svg>
         </button>
-        <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6">
+        <h1 className="text-white text-2xl  font-bold text-center ml-7 pt-1 ">
           Know Your Ganga
         </h1>
-        <div className="space-y-6 overflow-y-auto h-[75vh] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300">
+        </div>
+        
+        <div className="space-y-6 overflow-y-scroll h-[75vh] scrollbar-hide my-5">
           {blocks.map((block, index) => (
             <div
               key={index}
-              className={`rounded-3xl p-4 shadow-lg relative ${block.bgColor}`}
+              className={`rounded-2xl p-3 shadow-lg relative ${block.bgColor}`}
             >
-              <h2 className="text-gray-800 text-xl sm:text-2xl font-bold">
+              <h2 className="text-gray-800 text-[27px] font-bold">
                 {block.title}
               </h2>
-              <p className="text-gray-700 mt-2 text-sm sm:text-base lg:text-lg leading-5 sm:leading-6 line-clamp-2">
+              <p className="text-gray-700 mt-2 text-[15px] font-[275]">
                 {block.content.substring(0, 100)}...
               </p>
               <div className="text-right mt-2">
                 <button
                   onClick={() => openModal(block)}
-                  className="text-blue-600 font-semibold hover:underline text-sm sm:text-base"
+                  className="text-blue-600 font-semibold text-[12px] hover:underline"
                 >
                   READ MORE
                 </button>
@@ -112,6 +115,7 @@ const Article = () => {
           ))}
         </div>
       </div>
+      
 
       {/* Modal */}
       {selectedBlock && (
@@ -122,12 +126,12 @@ const Article = () => {
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
         >
           <div
-            className={`bg-white rounded-3xl p-4 sm:p-6 lg:p-8 max-w-sm sm:max-w-md w-full ${selectedBlock.bgColor}`}
+            className={`bg-white rounded-3xl p-4 max-w-lg w-72 ${selectedBlock.bgColor}`}
           >
-            <h2 className="text-gray-800 text-lg sm:text-2xl font-bold mb-4">
+            <h2 className="text-[27px] font-bold mb-4 text-gray-800">
               {selectedBlock.title}
             </h2>
-            <p className="text-gray-700 text-sm sm:text-base leading-5 sm:leading-6">
+            <p className="text-gray-700 text-[13px] leading-[25px]">
               {selectedBlock.content}
             </p>
             <div className="text-right mt-6">

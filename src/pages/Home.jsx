@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Loader from "../components/Loader";
-import Alert from "../components/Alert";
-import Settings from "../components/Settings";
-import Article from "../components/article";
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader';
+import Alert from '../components/Alert';
+import Settings from '../components/Settings';
+import Article from '../components/article';
+import { gsap } from "gsap";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,19 +12,19 @@ const Home = () => {
   const location = useLocation();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const [isArticlesVisible, setArticlesVisible] = useState(false);
-  const navigate = useNavigate();
-  const navigate1 = useNavigate();
+  const[isArticlesVisible, setArticlesVisible] =useState(false);
 
-  const handleBellClick = () => {
-    setIsAlertVisible((prev) => !prev);
-  };
-  const handleSettingsClick = () => {
-    setIsSettingsVisible((prev) => !prev);
-  };
-  const handleArticleClick = () => {
-    setArticlesVisible((prev) => !prev);
-  };
+ 
+    const handleBellClick = () => {
+      setIsAlertVisible((prev) => !prev);
+    };
+    const handleSettingsClick = () => {
+      setIsSettingsVisible((prev) => !prev);
+    };
+    const handleArticleClick = () => {
+      setArticlesVisible((prev) => !prev);
+    
+    };
 
   const { location: userLocation } = location.state || {};
   const navigate2 = useNavigate();
@@ -43,6 +44,8 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
+ 
+
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
       {isLoading ? (
@@ -52,7 +55,7 @@ const Home = () => {
           {/* Top Section */}
           {isAlertVisible && <Alert />}
           {isSettingsVisible && <Settings />}
-          {isArticlesVisible && <Article />}
+          {isArticlesVisible && <Article  />}
           {/* <div className="absolute inset-0 z-0"></div> */}
           <div
             className="relative z-10 flex items-center justify-between p-6  animate-slideDown "
@@ -122,7 +125,7 @@ const Home = () => {
           {/* Combined White Box Section */}
           <div className="bg-white mx-6 p-4  rounded-3xl text-center mb-6 relative z-10 animate-slideDown h-[20rem]">
             <div>
-              <div className="flex items-center justify-between ">
+              <div className="article flex items-center justify-between ">
                 <button onClick={handleArticleClick}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

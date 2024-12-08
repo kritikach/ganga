@@ -13,6 +13,7 @@ const App = () => {
   if (!showAlerts) return null; // Do not render the component if it's hidden
 
   return (
+  <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
     <div className="max-w-10xl mx-auto p-9 relative">
       {/* Close Button */}
       <button
@@ -28,7 +29,8 @@ const App = () => {
       <div className="uppercase text-sm font-semibold text-gray-800 mb-2">New</div>
       <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
         <div
-          className="alert flex justify-between items-center p-4 mb-2 bg-blue-50 rounded-lg shadow-xs cursor-pointer hover:bg-blue-100"
+          className="alert flex justify-between items-center p-4 mb-2 bg-blue-50 rounded-lg shadow-xs 
+          cursor-pointer hover:bg-blue-100"
           onClick={handleClick}
         >
           <span className="text-2xl text-blue-500">O₂</span>
@@ -65,6 +67,7 @@ const App = () => {
         </div>
       </div>
     </div>
+</div>
   );
 };
 
