@@ -68,18 +68,11 @@ const Article = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
-<<<<<<< HEAD
       <div className="p-4">
         <div className='flex'>
       <button
           onClick={() => setShowArticles(false)} // Navigate to the previous page
           className="bg-white text-blue-600 px-2 py-2 rounded hover:bg-gray-200 mb-1"
-=======
-      <div className="p-4 sm:p-6 lg:p-8">
-        <button
-          onClick={() => setShowArticles(false)}
-          className="text-white px-2 py-2 rounded hover:bg-gray-200 mb-4"
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,45 +86,27 @@ const Article = () => {
             />
           </svg>
         </button>
-<<<<<<< HEAD
         <h1 className="text-white text-2xl  font-bold text-center ml-7 pt-1 ">
           Know Your Ganga
         </h1>
         </div>
         
         <div className="space-y-6 overflow-y-scroll h-[75vh] scrollbar-hide my-5">
-=======
-        <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6">
-          Know Your Ganga
-        </h1>
-        <div className="space-y-6 overflow-y-auto h-[75vh] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300">
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
           {blocks.map((block, index) => (
             <div
               key={index}
               className={`rounded-2xl p-3 shadow-lg relative ${block.bgColor}`}
             >
-<<<<<<< HEAD
               <h2 className="text-gray-800 text-[27px] font-bold">
                 {block.title}
               </h2>
               <p className="text-gray-700 mt-2 text-[15px] font-[275]">
-=======
-              <h2 className="text-gray-800 text-xl sm:text-2xl font-bold">
-                {block.title}
-              </h2>
-              <p className="text-gray-700 mt-2 text-sm sm:text-base lg:text-lg leading-5 sm:leading-6 line-clamp-2">
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
                 {block.content.substring(0, 100)}...
               </p>
               <div className="text-right mt-2">
                 <button
                   onClick={() => openModal(block)}
-<<<<<<< HEAD
                   className="text-blue-600 font-semibold text-[12px] hover:underline"
-=======
-                  className="text-blue-600 font-semibold hover:underline text-sm sm:text-base"
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
                 >
                   READ MORE
                 </button>
@@ -151,21 +126,12 @@ const Article = () => {
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
         >
           <div
-<<<<<<< HEAD
             className={`bg-white rounded-3xl p-4 max-w-lg w-72 ${selectedBlock.bgColor}`}
           >
             <h2 className="text-[27px] font-bold mb-4 text-gray-800">
               {selectedBlock.title}
             </h2>
             <p className="text-gray-700 text-[13px] leading-[25px]">
-=======
-            className={`bg-white rounded-3xl p-4 sm:p-6 lg:p-8 max-w-sm sm:max-w-md w-full ${selectedBlock.bgColor}`}
-          >
-            <h2 className="text-gray-800 text-lg sm:text-2xl font-bold mb-4">
-              {selectedBlock.title}
-            </h2>
-            <p className="text-gray-700 text-sm sm:text-base leading-5 sm:leading-6">
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
               {selectedBlock.content}
             </p>
             <div className="text-right mt-6">

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
@@ -6,14 +5,6 @@ import Alert from '../components/Alert';
 import Settings from '../components/Settings';
 import Article from '../components/article';
 import { gsap } from "gsap";
-=======
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Loader from "../components/Loader";
-import Alert from "../components/Alert";
-import Settings from "../components/Settings";
-import Article from "../components/article";
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +12,6 @@ const Home = () => {
   const location = useLocation();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-<<<<<<< HEAD
   const[isArticlesVisible, setArticlesVisible] =useState(false);
 
  
@@ -35,21 +25,6 @@ const Home = () => {
       setArticlesVisible((prev) => !prev);
     
     };
-=======
-  const [isArticlesVisible, setArticlesVisible] = useState(false);
-  const navigate = useNavigate();
-  const navigate1 = useNavigate();
-
-  const handleBellClick = () => {
-    setIsAlertVisible((prev) => !prev);
-  };
-  const handleSettingsClick = () => {
-    setIsSettingsVisible((prev) => !prev);
-  };
-  const handleArticleClick = () => {
-    setArticlesVisible((prev) => !prev);
-  };
->>>>>>> 2e505b08ac27d08edd5b30e03d565b459a5d0939
 
   const { location: userLocation } = location.state || {};
   const navigate2 = useNavigate();
