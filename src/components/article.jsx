@@ -70,6 +70,7 @@ const Article = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
       <div className="p-4">
+        <div className='flex'>
       <button
           onClick={() => setShowArticles(false)} // Navigate to the previous page
           className="bg-white text-blue-600 px-2 py-2 rounded hover:bg-gray-200 mb-1"
@@ -86,10 +87,12 @@ const Article = () => {
               />
             </svg>
         </button>
-        <h1 className="text-white text-4xl font-bold text-center mb-6 mt-6">
+        <h1 className="text-white text-2xl  font-bold text-center ml-7 pt-1 ">
           Know Your Ganga
         </h1>
-        <div className="space-y-6 overflow-y-scroll h-[75vh] scrollbar-hide">
+        </div>
+       
+        <div className="space-y-6 overflow-y-scroll h-[75vh] scrollbar-hide my-5">
           {blocks.map((block, index) => (
             <div
               key={index}
