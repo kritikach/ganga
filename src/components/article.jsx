@@ -91,23 +91,23 @@ const Article = () => {
           Know Your Ganga
         </h1>
         </div>
-       
+        
         <div className="space-y-6 overflow-y-scroll h-[75vh] scrollbar-hide my-5">
           {blocks.map((block, index) => (
             <div
               key={index}
-              className={`rounded-3xl p-4 shadow-lg relative ${block.bgColor}`}
+              className={`rounded-2xl p-3 shadow-lg relative ${block.bgColor}`}
             >
-              <h2 className="text-gray-800 text-[32px] font-bold">
+              <h2 className="text-gray-800 text-[27px] font-bold">
                 {block.title}
               </h2>
-              <p className="text-gray-700 mt-2 text-[20px] leading-[30px] font-[275] line-clamp-2">
+              <p className="text-gray-700 mt-2 text-[15px] font-[275]">
                 {block.content.substring(0, 100)}...
               </p>
               <div className="text-right mt-2">
                 <button
                   onClick={() => openModal(block)}
-                  className="text-blue-600 font-semibold text-[20px] hover:underline"
+                  className="text-blue-600 font-semibold text-[12px] hover:underline"
                 >
                   READ MORE
                 </button>
@@ -116,6 +116,7 @@ const Article = () => {
           ))}
         </div>
       </div>
+      
 
       {/* Modal */}
       {selectedBlock && (
@@ -126,12 +127,12 @@ const Article = () => {
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
         >
           <div
-            className={`bg-white rounded-3xl p-6 max-w-lg w-full ${selectedBlock.bgColor}`}
+            className={`bg-white rounded-3xl p-4 max-w-lg w-72 ${selectedBlock.bgColor}`}
           >
-            <h2 className="text-[32px] font-bold mb-4 text-gray-800">
+            <h2 className="text-[27px] font-bold mb-4 text-gray-800">
               {selectedBlock.title}
             </h2>
-            <p className="text-gray-700 text-[20px] leading-[30px]">
+            <p className="text-gray-700 text-[13px] leading-[25px]">
               {selectedBlock.content}
             </p>
             <div className="text-right mt-6">
