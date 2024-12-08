@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Alert from '../components/Alert';
 import Settings from '../components/Settings';
+import Article from '../components/article';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,6 +11,7 @@ const Home = () => {
   const location = useLocation();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const[isArticlesVisible, setArticlesVisible] =useState(false);
   const navigate = useNavigate();
   const navigate1 = useNavigate();
 
@@ -20,14 +22,13 @@ const Home = () => {
     const handleSettingsClick = () => {
       setIsSettingsVisible((prev) => !prev);
     };
+    const handleArticleClick = () => {
+      setArticlesVisible((prev) => !prev);
+    };
 
   const { location: userLocation } = location.state || {};
   const navigate2 = useNavigate();
   
-  // Redirect handler
-  const handleredirects = () => {
-    navigate2('/article');
-  };
 
   useEffect(() => {
     // Simulate a loader timeout
@@ -54,6 +55,7 @@ const Home = () => {
           {/* Top Section */}
           {isAlertVisible && <Alert />}
           {isSettingsVisible && <Settings />}
+          {isArticlesVisible && <Article />}
           {/* <div className="absolute inset-0 z-0"></div> */}
           <div className="relative z-10 flex items-center justify-between p-6  animate-slideDown " style={{ width: "3",  }}>
             {/* Location */}
@@ -95,7 +97,7 @@ const Home = () => {
           <div className="bg-white mx-6 p-4  rounded-3xl text-center mb-6 relative z-10 animate-slideDown h-[20rem]">
             <div>
               <div className="flex items-center justify-between ">
-                <button onClick={handleredirects}>
+                <button onClick={handleArticleClick}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                     <path fill="currentColor" fillRule="evenodd" d="M4.727 2.712c.306-.299.734-.494 1.544-.6C7.105 2.002 8.209 2 9.793 2h4.414c1.584 0 2.688.002 3.522.112c.810.106 1.238.301 1.544.6c.305.3.504.72.613 1.513c.112.817.114 1.899.114 3.45v7.839H7.346c-.903 0-1.519-.001-2.047.138c-.472.124-.91.326-1.299.592V7.676c0-1.552.002-2.634.114-3.451c.109-.793.308-1.213.613-1.513m2.86 3.072a.82.82 0 0 0-.828.81c0 .448.37.811.827.811h8.828a.82.82 0 0 0 .827-.81a.82.82 0 0 0-.827-.811zm-.828 4.594c0-.447.37-.81.827-.81h5.517a.82.82 0 0 1 .828.81a.82.82 0 0 1-.828.811H7.586a.82.82 0 0 1-.827-.81" clipRule="evenodd"/>
                   </svg>
