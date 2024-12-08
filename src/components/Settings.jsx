@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const [alertOn, setAlertOn] = useState(false);
+  const[showSettings, setShowSettings] =useState(true)
   const [expandedDiv, setExpandedDiv] = useState(null);
   const navigate = useNavigate(); 
 
-  const goBack = () => {
-    navigate(-1);  // Navigate to the previous page
-  };
+ if (!showSettings) return null; 
+  // const goBack = () => {
+  //   navigate('/Home');  // Navigate to the previous page
+  // };
 
   const handleToggle = () => {
     setAlertOn(!alertOn);
@@ -39,7 +41,7 @@ const Settings = () => {
       <div className="relative z-10 px-6 py-8 flex flex-col items-center justify-start space-y-6 min-h-screen">
         {/* Header */}
         <div className="flex items-center w-full max-w-xl">
-          <button className="text-white text-lg font-bold" onClick={goBack}>
+          <button className="text-white text-lg font-bold"  onClick={() => setShowSettings(false)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24.13px"
