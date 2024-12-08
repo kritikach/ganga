@@ -2,7 +2,7 @@ import './App.css';
 import Welcome from './pages/Welcome';
 import SearchInitial from './pages/SearchInitial';
 import Home from './pages/Home';
-import Article from './components/article'; // Ensure correct case for file names
+import Article from './components/Article'; // Ensure correct case for file names
 
 import Settings from './components/Settings';
 import { HashRouter as Router, Route, Routes } from "react-router-dom";

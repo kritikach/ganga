@@ -4,6 +4,9 @@ import '../App.css';
 
 const Article = () => {
   const [selectedBlock, setSelectedBlock] = useState(null);
+  const[showArticle, setShowArticles] =useState(true);
+
+  if (!showArticle) return null; 
 
   const openModal = (block) => {
     setSelectedBlock(block);
@@ -67,6 +70,22 @@ const Article = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
       <div className="p-4">
+      <button
+          onClick={() => setShowArticles(false)} // Navigate to the previous page
+          className="bg-white text-blue-600 px-2 py-2 rounded hover:bg-gray-200 mb-1"
+        >
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24.13px"
+              height="24.13px"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42a.996.996 0 0 0-1.41 0l-6.59 6.59a.996.996 0 0 0 0 1.41l6.59 6.59a.996.996 0 1 0 1.41-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1"
+              />
+            </svg>
+        </button>
         <h1 className="text-white text-4xl font-bold text-center mb-6 mt-6">
           Know Your Ganga
         </h1>
