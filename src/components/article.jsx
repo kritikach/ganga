@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import '../App.css';
+// import '../App.css';
 
 const Article = () => {
   const [selectedBlock, setSelectedBlock] = useState(null);
