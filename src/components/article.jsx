@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-// import '../App.css';
 
 const Article = () => {
   const [selectedBlock, setSelectedBlock] = useState(null);
-  const[showArticle, setShowArticles] =useState(true);
+  const [showArticle, setShowArticles] = useState(true);
 
-  if (!showArticle) return null; 
+  if (!showArticle) return null;
 
   const openModal = (block) => {
     setSelectedBlock(block);
@@ -69,42 +68,42 @@ const Article = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
-      <div className="p-4">
-      <button
-          onClick={() => setShowArticles(false)} // Navigate to the previous page
-          className="bg-white text-blue-600 px-2 py-2 rounded hover:bg-gray-200 mb-1"
+      <div className="p-4 sm:p-6 lg:p-8">
+        <button
+          onClick={() => setShowArticles(false)}
+          className="text-white px-2 py-2 rounded hover:bg-gray-200 mb-4"
         >
           <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24.13px"
-              height="24.13px"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42a.996.996 0 0 0-1.41 0l-6.59 6.59a.996.996 0 0 0 0 1.41l6.59 6.59a.996.996 0 1 0 1.41-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1"
-              />
-            </svg>
+            xmlns="http://www.w3.org/2000/svg"
+            width="24.13px"
+            height="24.13px"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42a.996.996 0 0 0-1.41 0l-6.59 6.59a.996.996 0 0 0 0 1.41l6.59 6.59a.996.996 0 1 0 1.41-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1"
+            />
+          </svg>
         </button>
-        <h1 className="text-white text-4xl font-bold text-center mb-6 mt-6">
+        <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6">
           Know Your Ganga
         </h1>
-        <div className="space-y-6 overflow-y-scroll h-[75vh] scrollbar-hide">
+        <div className="space-y-6 overflow-y-auto h-[75vh] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-300">
           {blocks.map((block, index) => (
             <div
               key={index}
               className={`rounded-3xl p-4 shadow-lg relative ${block.bgColor}`}
             >
-              <h2 className="text-gray-800 text-[32px] font-bold">
+              <h2 className="text-gray-800 text-xl sm:text-2xl font-bold">
                 {block.title}
               </h2>
-              <p className="text-gray-700 mt-2 text-[20px] leading-[30px] font-[275] line-clamp-2">
+              <p className="text-gray-700 mt-2 text-sm sm:text-base lg:text-lg leading-5 sm:leading-6 line-clamp-2">
                 {block.content.substring(0, 100)}...
               </p>
               <div className="text-right mt-2">
                 <button
                   onClick={() => openModal(block)}
-                  className="text-blue-600 font-semibold text-[20px] hover:underline"
+                  className="text-blue-600 font-semibold hover:underline text-sm sm:text-base"
                 >
                   READ MORE
                 </button>
@@ -123,12 +122,12 @@ const Article = () => {
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
         >
           <div
-            className={`bg-white rounded-3xl p-6 max-w-lg w-full ${selectedBlock.bgColor}`}
+            className={`bg-white rounded-3xl p-4 sm:p-6 lg:p-8 max-w-sm sm:max-w-md w-full ${selectedBlock.bgColor}`}
           >
-            <h2 className="text-[32px] font-bold mb-4 text-gray-800">
+            <h2 className="text-gray-800 text-lg sm:text-2xl font-bold mb-4">
               {selectedBlock.title}
             </h2>
-            <p className="text-gray-700 text-[20px] leading-[30px]">
+            <p className="text-gray-700 text-sm sm:text-base leading-5 sm:leading-6">
               {selectedBlock.content}
             </p>
             <div className="text-right mt-6">

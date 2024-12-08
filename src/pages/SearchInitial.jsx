@@ -81,7 +81,7 @@ const SearchInitial = () => {
           gsap.to(factRef.current, { opacity: 1, duration: 0.5 });
         },
       });
-    }, 2000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
