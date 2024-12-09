@@ -5,6 +5,8 @@ import Alert from '../components/Alert';
 import Settings from '../components/Settings';
 import Article from '../components/article';
 import { gsap } from "gsap";
+import DataMatch from "../components/DataMatch"
+import quality from '../data/quality';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,17 +22,18 @@ const Home = () => {
   const [activeCircle, setActiveCircle] = useState(1);
   const navigate = useNavigate();
 
- 
-    const handleBellClick = () => {
-      setIsAlertVisible((prev) => !prev);
-    };
-    const handleSettingsClick = () => {
-      setIsSettingsVisible((prev) => !prev);
-    };
-    const handleArticleClick = () => {
-      setArticlesVisible((prev) => !prev);
-    
-    };
+  const [todayData, setTodayData] = useState();
+
+  const handleBellClick = () => {
+    setIsAlertVisible((prev) => !prev);
+  };
+  const handleSettingsClick = () => {
+    setIsSettingsVisible((prev) => !prev);
+  };
+  const handleArticleClick = () => {
+    setArticlesVisible((prev) => !prev);
+
+  };
 
     const handleCircleClick = (circleNum) => {
       setActiveCircle(circleNum);
@@ -73,6 +76,41 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  console.log("todayData:", todayData);
+
+  const determineClass = (todayData) => {
+    if (!todayData) {
+      console.log("Data is missing or null!");
+      return "Unknown"; // Early return if no data
+    }
+    const { ph, do: dissolvedOxygen, bod, totalColiform } = todayData;
+    console.log("ph:", ph, "dissolvedOxygen:", dissolvedOxygen, "bod:", bod, "totalColiform:", totalColiform);
+
+    if (ph >= 6.5 && ph <= 8.5 && dissolvedOxygen >= 6 && bod <= 2 && totalColiform <= 50) {
+      return "Class A";
+    } else if (ph >= 6.5 && ph <= 8.5 && dissolvedOxygen >= 5 && bod <= 3 && totalColiform <= 500) {
+      return "Class B";
+    } else if (ph >= 6 && ph <= 9 && dissolvedOxygen >= 4 && bod <= 3 && totalColiform <= 5000) {
+      return "Class C";
+    } else if (ph >= 6.5 && ph <= 8.5 && dissolvedOxygen >= 4 && bod <= 3 && totalColiform <= 5000) {
+      return "Class D";
+    } else if (ph >= 6 && ph <= 8.5 && dissolvedOxygen >= 4 && bod <= 3 && totalColiform <= 5000) {
+      return "Class E";
+    } else {
+      return "Unknown";
+    }
+  };
+
+
+  console.log("quality array:", quality);
+
+  // Check if `waterClass` matches a valid class
+  const waterClass = determineClass(todayData);
+  console.log("Determined waterClass:", waterClass);
+
+  // Find the corresponding quality data
+  const currentQuality = quality.find((q) => q.class === waterClass);
+  console.log("currentQuality found:", currentQuality);
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
@@ -83,7 +121,8 @@ const Home = () => {
           {/* Top Section */}
           {isAlertVisible && <Alert />}
           {isSettingsVisible && <Settings />}
-          {isArticlesVisible && <Article  />}
+          {isArticlesVisible && <Article />}
+
           {/* <div className="absolute inset-0 z-0"></div> */}
           <div
             className="relative z-10 flex items-center justify-between p-6  animate-slideDown "
@@ -98,7 +137,9 @@ const Home = () => {
               >
                 <path
                   fill="currentColor"
-                  d="M16 2A11.013 11.013 0 0 0 5 13a10.9 10.9 0 0 0 2.216 6.6s.3.395.349.452L16 30l8.439-9.953c.044-.053.345-.447.345-.447l.001-.003A10.9 10.9 0 0 0 27 13A11.013 11.013 0 0 0 16 2m0 15a4 4 0 1 1 4-4a4.005 4.005 0 0 1-4 4"
+                  d="M16 2A11.013 11.013 0 0 0 5 13a10.9 10.9 0 0 0 2.216 6.6s.3.395.349.452L16 
+                  30l8.439-9.953c.044-.053.345-.447.345-.447l.001-.003A10.9 10.9 0 0 0 27 13A11.013 
+                  11.013 0 0 0 16 2m0 15a4 4 0 1 1 4-4a4.005 4.005 0 0 1-4 4"
                 />
                 <circle cx="16" cy="13" r="4" fill="none" />
               </svg>
@@ -144,7 +185,7 @@ const Home = () => {
           {/* Emoji Section */}
           <div className="flex justify-center  relative z-10 animate-bounceIn">
             <img
-              src="src\assets\images\severe.png"
+              src={currentQuality?.imageLink || "N/A"}
               alt="Water Quality"
               className="object-cover w-[217px] h-auto"
             />
@@ -164,7 +205,11 @@ const Home = () => {
                     <path
                       fill="currentColor"
                       fillRule="evenodd"
-                      d="M4.727 2.712c.306-.299.734-.494 1.544-.6C7.105 2.002 8.209 2 9.793 2h4.414c1.584 0 2.688.002 3.522.112c.810.106 1.238.301 1.544.6c.305.3.504.72.613 1.513c.112.817.114 1.899.114 3.45v7.839H7.346c-.903 0-1.519-.001-2.047.138c-.472.124-.91.326-1.299.592V7.676c0-1.552.002-2.634.114-3.451c.109-.793.308-1.213.613-1.513m2.86 3.072a.82.82 0 0 0-.828.81c0 .448.37.811.827.811h8.828a.82.82 0 0 0 .827-.81a.82.82 0 0 0-.827-.811zm-.828 4.594c0-.447.37-.81.827-.81h5.517a.82.82 0 0 1 .828.81a.82.82 0 0 1-.828.811H7.586a.82.82 0 0 1-.827-.81"
+                      d="M4.727 2.712c.306-.299.734-.494 1.544-.6C7.105 2.002 8.209 2 9.793 2h4.414c1.584 0 
+                      2.688.002 3.522.112c.810.106 1.238.301 1.544.6c.305.3.504.72.613 1.513c.112.817.114 
+                      1.899.114 3.45v7.839H7.346c-.903 0-1.519-.001-2.047.138c-.472.124-.91.326-1.299.592V7.
+                      676c0-1.552.002-2.634.114-3.451c.109-.793.308-1.213.613-1.513m2.86 3.072a.82.82 0 0 0-.828.81c0 .448.37.811.827.811h8.828a.82.82 0 0 0 .827-.81a.82.82 
+                      0 0 0-.827-.811zm-.828 4.594c0-.447.37-.81.827-.81h5.517a.82.82 0 0 1 .828.81a.82.82 0 0 1-.828.811H7.586a.82.82 0 0 1-.827-.81"
                       clipRule="evenodd"
                     />
                   </svg>
@@ -174,13 +219,18 @@ const Home = () => {
               <p className="text-black text-[18px]  pl-10 -mt-10 ">
                 Today, {currentDate}
               </p>
-              <h1 className="text-4xl font-bold  text-red-500">Severe</h1>
-              <p className="text-black mt-1  text-[16px]">(Class E)</p>
+              <h1
+                className="text-4xl font-bold"
+                style={{ color: currentQuality?.color || "black" }}
+              >
+                {currentQuality?.title || "N/A"}
+              </h1>
+              <p className="text-black mt-1  text-[16px]">{currentQuality?.class || "N/A"}</p>
               <p className="text-black px-2 mt-1 text-[14px]">
-                Very poor quality, unsuitable for any direct use, requires
-                extensive treatment.
+                {currentQuality?.subtitle || "N/A"}
               </p>
             </div>
+            <DataMatch setTodayData={setTodayData} />
 
             <div className="mt-2">
               <div className="flex items-center justify-between mb-1">
@@ -207,7 +257,7 @@ const Home = () => {
                 <div className="text-black">|</div>
                 <div className="flex items-center justify-end w-1/2">
                   <span className="text-black text-[14px] font-semibold ">
-                    7.6 mg/L
+                    {todayData?.do || "NA"} mg/L
                   </span>
                 </div>
               </div>
@@ -233,11 +283,12 @@ const Home = () => {
                 <div className="text-black">|</div>
                 <div className="flex items-center justify-end w-1/2">
                   <span className="text-black text-[14px] font-semibold ">
-                    1.8 mg/L
+                    {todayData?.bod || "NA"} mg/L
                   </span>
                 </div>
               </div>
               <div className="flex items-center justify-between mb-2 ">
+
                 <div className="flex items-center gap-2 w-1/2">
                   <span>
                     <svg
@@ -259,7 +310,7 @@ const Home = () => {
                 <div className="text-black">|</div>
                 <div className="flex items-center justify-end w-1/2">
                   <span className="text-black text-[14px] font-semibold ">
-                    7
+                    {todayData?.ph || "NA"}
                   </span>
                 </div>
               </div>
@@ -287,7 +338,7 @@ const Home = () => {
                 <div className="text-black">|</div>
                 <div className="flex items-center justify-end w-1/2">
                   <span className="text-black text-[14px] font-semibold ">
-                    2194 MPN/100ml
+                    {todayData?.totalColiform || "NA"} MPN/100ml
                   </span>
                 </div>
               </div>
