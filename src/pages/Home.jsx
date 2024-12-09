@@ -14,20 +14,20 @@ const Home = () => {
   const location = useLocation();
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const[isArticlesVisible, setArticlesVisible] =useState(false);
+  const [isArticlesVisible, setArticlesVisible] = useState(false);
 
   const [todayData, setTodayData] = useState();
- 
-    const handleBellClick = () => {
-      setIsAlertVisible((prev) => !prev);
-    };
-    const handleSettingsClick = () => {
-      setIsSettingsVisible((prev) => !prev);
-    };
-    const handleArticleClick = () => {
-      setArticlesVisible((prev) => !prev);
-    
-    };
+
+  const handleBellClick = () => {
+    setIsAlertVisible((prev) => !prev);
+  };
+  const handleSettingsClick = () => {
+    setIsSettingsVisible((prev) => !prev);
+  };
+  const handleArticleClick = () => {
+    setArticlesVisible((prev) => !prev);
+
+  };
 
   const { location: userLocation } = location.state || {};
   const navigate2 = useNavigate();
@@ -56,7 +56,7 @@ const Home = () => {
     }
     const { ph, do: dissolvedOxygen, bod, totalColiform } = todayData;
     console.log("ph:", ph, "dissolvedOxygen:", dissolvedOxygen, "bod:", bod, "totalColiform:", totalColiform);
-  
+
     if (ph >= 6.5 && ph <= 8.5 && dissolvedOxygen >= 6 && bod <= 2 && totalColiform <= 50) {
       return "Class A";
     } else if (ph >= 6.5 && ph <= 8.5 && dissolvedOxygen >= 5 && bod <= 3 && totalColiform <= 500) {
@@ -75,13 +75,13 @@ const Home = () => {
 
   console.log("quality array:", quality);
 
-// Check if `waterClass` matches a valid class
-const waterClass = determineClass(todayData);
-console.log("Determined waterClass:", waterClass);
+  // Check if `waterClass` matches a valid class
+  const waterClass = determineClass(todayData);
+  console.log("Determined waterClass:", waterClass);
 
-// Find the corresponding quality data
-const currentQuality = quality.find((q) => q.class === waterClass);
-console.log("currentQuality found:", currentQuality);
+  // Find the corresponding quality data
+  const currentQuality = quality.find((q) => q.class === waterClass);
+  console.log("currentQuality found:", currentQuality);
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
@@ -92,8 +92,8 @@ console.log("currentQuality found:", currentQuality);
           {/* Top Section */}
           {isAlertVisible && <Alert />}
           {isSettingsVisible && <Settings />}
-          {isArticlesVisible && <Article  />}
-        
+          {isArticlesVisible && <Article />}
+
           {/* <div className="absolute inset-0 z-0"></div> */}
           <div
             className="relative z-10 flex items-center justify-between p-6  animate-slideDown "
@@ -190,14 +190,19 @@ console.log("currentQuality found:", currentQuality);
               <p className="text-black text-[18px]  pl-10 -mt-10 ">
                 Today, {currentDate}
               </p>
-              <h1 className="text-4xl font-bold  text-red-500">{currentQuality?.title || "N/A"}</h1>
+              <h1
+                className="text-4xl font-bold"
+                style={{ color: currentQuality?.color || "black" }}
+              >
+                {currentQuality?.title || "N/A"}
+              </h1>
               <p className="text-black mt-1  text-[16px]">{currentQuality?.class || "N/A"}</p>
               <p className="text-black px-2 mt-1 text-[14px]">
-              {currentQuality?.subtitle || "N/A"}
+                {currentQuality?.subtitle || "N/A"}
               </p>
             </div>
-       <DataMatch setTodayData={setTodayData} />
-       
+            <DataMatch setTodayData={setTodayData} />
+
             <div className="mt-2">
               <div className="flex items-center justify-between mb-1">
                 <div className="flex items-center gap-2 w-1/2">
@@ -223,7 +228,7 @@ console.log("currentQuality found:", currentQuality);
                 <div className="text-black">|</div>
                 <div className="flex items-center justify-end w-1/2">
                   <span className="text-black text-[14px] font-semibold ">
-                  {todayData?.do || "NA"} mg/L
+                    {todayData?.do || "NA"} mg/L
                   </span>
                 </div>
               </div>
@@ -254,7 +259,7 @@ console.log("currentQuality found:", currentQuality);
                 </div>
               </div>
               <div className="flex items-center justify-between mb-2 ">
-                
+
                 <div className="flex items-center gap-2 w-1/2">
                   <span>
                     <svg
@@ -276,7 +281,7 @@ console.log("currentQuality found:", currentQuality);
                 <div className="text-black">|</div>
                 <div className="flex items-center justify-end w-1/2">
                   <span className="text-black text-[14px] font-semibold ">
-                    {todayData?.ph || "NA"} 
+                    {todayData?.ph || "NA"}
                   </span>
                 </div>
               </div>
