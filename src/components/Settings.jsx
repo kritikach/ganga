@@ -22,7 +22,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="font-poppins m-0 p-0 relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF] overflow-x-hidden overflow-y-scroll box-border">
+    <div className="font-poppins m-0 p-0 z-10 relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF] overflow-x-hidden overflow-y-scroll box-border">
       {/* Vector Images */}
       <div className="absolute inset-0 pointer-events-none flex justify-between items-start">
         <img

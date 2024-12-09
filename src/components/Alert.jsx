@@ -14,7 +14,7 @@ const App = () => {
 
   return (
   <div className="relative min-h-screen bg-gradient-to-b from-[#00ADFF] to-[#006FFF]">
-    <div className="max-w-10xl mx-auto p-9 relative">
+    <div className="max-w-10xl z-10 mx-auto p-9 relative">
       {/* Close Button */}
       <button
         className="absolute top-8 right-4 text-gray-500 hover:text-red-500 text-2xl"

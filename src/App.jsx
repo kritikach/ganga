@@ -2,6 +2,8 @@ import './App.css';
 import Welcome from './pages/Welcome';
 import SearchInitial from './pages/SearchInitial';
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Map from './pages/Map';
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { motion } from 'framer-motion';
 
@@ -46,6 +48,15 @@ function App() {
             path="/Home"
             element={<Home />}
           />
+          <Route
+            path="/Dashboard"
+            element={<Dashboard />}
+          />
+          <Route
+            path="/Map"
+            element={<Map />}
+          />
+          
 
         </Routes>
       </Router>
